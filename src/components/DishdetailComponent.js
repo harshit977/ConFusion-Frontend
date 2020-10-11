@@ -68,7 +68,7 @@ import {Link} from 'react-router-dom';
           </div>
              <div className="row">
                    <RenderDish dish={props.dish} />
-                   <RenderComments dish={props.comments} />  
+                   <RenderComments comments={props.comments} />  
              </div>
         </div>
         );
