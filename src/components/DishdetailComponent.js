@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card,CardImg,CardText,CardBody,CardTitle,Modal,ModalHeader,ModalBody,Breadcrumb, BreadcrumbItem,Button,Row,Col,Label} from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
+import {Loading} from './LoadingComponent';
 import { Link } from "react-router-dom";
 
 const required = val => val && val.length;
@@ -158,8 +159,25 @@ function RenderComments({ comments, dishId , addComment}) {
 
 const DishDetailComponent = props => 
 {
- 
-  if (props.dish != null)
+ if(props.isLoading) {
+   return(
+     <div className="container">
+       <div className="row">
+         <Loading />
+       </div>
+     </div>
+   );
+ }
+ else if(props.errMess) {
+  return(
+    <div className="container">
+      <div className="row">
+        <h4>{props.errMess}</h4>
+      </div>
+    </div>
+  );
+ }
+  else if (props.dish != null)
     return (
       <div className="container">
         <div className="row">
