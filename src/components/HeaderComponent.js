@@ -61,22 +61,34 @@ class Header extends Component{
               <Nav navbar>
                   <NavItem>
                       <NavLink className="nav-link" to="/home">
-                          <span className="fa fa-home fa-lg"> Home</span>
+                          <span className="fa fa-home fa-lg"> </span> Home
                           </NavLink> 
                   </NavItem>
                   <NavItem>
                       <NavLink className="nav-link" to="/aboutus">
-                          <span className="fa fa-info fa-lg"> About Us</span>
+                          <span className="fa fa-info fa-lg"> </span> About Us
                           </NavLink> 
                   </NavItem>
                   <NavItem>
                       <NavLink className="nav-link" to="/menu">
-                          <span className="fa fa-list fa-lg"> Menu</span>
+                          <span className="fa fa-list fa-lg"> </span> Menu
                           </NavLink> 
                   </NavItem>
                   <NavItem>
+                      {
+                          this.props.auth.isAuthenticated
+                          ?
+                         <NavLink className="nav-link" to="/favorites">
+                        <span className="fa fa-heart fa-lg"></span> My Favorites
+                        </NavLink>
+                        :
+                        <div></div>
+                      }
+                    
+                </NavItem>
+                  <NavItem>
                       <NavLink className="nav-link" to="/contactus">
-                          <span className="fa fa-address-card fa-lg"> Contact Us</span>
+                          <span className="fa fa-address-card fa-lg"></span> Contact Us
                           </NavLink> 
                   </NavItem>
               </Nav>
@@ -85,6 +97,7 @@ class Header extends Component{
                   { 
                   !this.props.auth.isAuthenticated 
                   ?
+                  <div style={{margin: 5}}>
                     <Button outline onClick={this.toggleModal}>
                         <span className="fa fa-sign-in fa-lg"></span> Login
                         {this.props.auth.isFetching ?
@@ -92,6 +105,7 @@ class Header extends Component{
                             : null
                         }
                     </Button>
+                  </div>
                     :
                     <div>
                     <div className="navbar-text mr-3">{this.props.auth.user.username}</div>

@@ -51,6 +51,8 @@ export const fetchDishes = () => (dispatch) => {
 
     return fetch(baseUrl + 'dishes')
         .then(response => {
+            console.log("hello");
+            console.log(response);
             if (response.ok) {
                 return response;
             }
