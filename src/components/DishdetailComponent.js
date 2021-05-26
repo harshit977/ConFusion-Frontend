@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Card,CardImg,CardText,CardBody,CardTitle,Modal,ModalHeader,ModalBody,Breadcrumb, BreadcrumbItem,Button,Row,Col,Label} from "reactstrap";
+import { Card,CardImg,CardText,CardBody,CardTitle,Modal,ModalHeader,ModalBody,Breadcrumb, BreadcrumbItem,Button,Row,Col,Label,CardImgOverlay} from "reactstrap";
 import { Control, LocalForm, Errors } from "react-redux-form";
 import {Loading} from './LoadingComponent';
 import { Link } from "react-router-dom";
