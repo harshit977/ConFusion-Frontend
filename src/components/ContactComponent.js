@@ -20,8 +20,8 @@ class Contact extends Component {
 
   handleSubmit(values) 
   {
-      this.props.resetFeedbackForm();
       this.props.postFeedback(values);
+      this.props.resetFeedbackForm();
   }
 
     render()
