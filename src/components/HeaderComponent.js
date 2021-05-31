@@ -97,7 +97,7 @@ class Header extends Component{
                   { 
                   !this.props.auth.isAuthenticated 
                   ?
-                  <div style={{margin: 5}}>
+                  <div style={{margin: 5, fontFamily:"cursive"}}>
                     <Button outline onClick={this.toggleModal}>
                         <span className="fa fa-sign-in fa-lg"></span> Login
                         {this.props.auth.isFetching ?

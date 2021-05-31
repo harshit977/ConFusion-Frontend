@@ -88,6 +88,7 @@ class CommentForm extends Component {
 }
 
 function RenderDish({dish, favorite, postFavorite}) {
+  console.log(favorite);
   return (
     <div className="col-12 col-md-5 m-1">
       <FadeTransform
@@ -99,6 +100,7 @@ function RenderDish({dish, favorite, postFavorite}) {
           <CardImg top src={baseUrl + dish.image} alt={dish.name} />
           <CardImgOverlay>
               <Button outline color="primary" onClick={() => favorite ? console.log('Already favorite') : postFavorite(dish._id)}>
+                
                   {favorite ?
                       <span className="fa fa-heart"></span>
                       : 
@@ -129,12 +131,12 @@ function RenderComments({ comments, dishId , postComment}) {
                 <li key={comment.id}>
                   <p>{comment.comment}</p>
                   <p>
-                    -- {comment.author} ,{" "}
+                    -- {comment.author.firstname},{" "}{comment.author.lastname} ,{" "}
                     {new Intl.DateTimeFormat("en-US", {
                       year: "numeric",
                       month: "short",
                       day: "2-digit"
-                    }).format(new Date(Date.parse(comment.date)))}
+                    }).format(new Date(Date.parse(comment.updatedAt)))}
                   </p>
                 </li>
                 </Fade>
@@ -150,6 +152,7 @@ function RenderComments({ comments, dishId , postComment}) {
 
 const DishDetailComponent = props => 
 {
+  console.log(props.favorite);
  if(props.isLoading) {
    return(
      <div className="container">

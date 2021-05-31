@@ -70,8 +70,28 @@ class Main extends Component{
           />
       );
     }
-
+   
     const DishWithId = ({match}) => {
+      var flag;
+      if(this.props.favorites===null) {
+        flag=false;
+      }
+      else if(this.props.favorites.favorites===null) {
+        flag=false;
+      }
+      else {
+        console.log(this.props.favorites.favorites);
+        
+        if(this.props.favorites.favorites.dishes) {
+        
+            flag=this.props.favorites.favorites.dishes.some((dish) => dish._id === match.params.dishId);
+          }
+        else {
+          flag=false;
+        }
+        
+      }
+
       return(
         this.props.auth.isAuthenticated
         ?
@@ -81,7 +101,7 @@ class Main extends Component{
         comments={this.props.comments.comments.filter((comment) => comment.dish === match.params.dishId)}
         commentsErrMess={this.props.comments.errMess}
         postComment={this.props.postComment}
-        favorite={this.props.favorites.favorites.dishes.some((dish) => dish._id === match.params.dishId)}
+        favorite={flag}
         postFavorite={this.props.postFavorite}
         />
       :
@@ -91,7 +111,7 @@ class Main extends Component{
         comments={this.props.comments.comments.filter((comment) => comment.dish === match.params.dishId)}
         commentsErrMess={this.props.comments.errMess}
         postComment={this.props.postComment}
-        favorite={false}
+        favorite={flag}
         postFavorite={this.props.postFavorite}
         />
 

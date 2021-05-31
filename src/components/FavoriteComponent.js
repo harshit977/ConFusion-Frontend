@@ -13,7 +13,7 @@ function RenderMenuItem({ dish, deleteFavorite }) {
             <Media body className="ml-5">
                 <Media heading>{dish.name}</Media>
                 <p>{dish.description}</p>
-                <Button outline color="danger" onClick={() => deleteFavorite(dish._id)}>
+                <Button outline color="danger" onClick={() => { deleteFavorite(dish._id);}}>
                     <span className="fa fa-times"></span>
                 </Button>
             </Media>
@@ -41,15 +41,16 @@ const Favorites = (props) => {
             </div>
         )
     }
-    else if (props.favorites.favorites) {
+    else if (props.favorites.favorites.length) {
 
-        const favorites = props.favorites.favorites.dishes.map((dish) => {
+        const favorites = props.favorites.favorites[0].dishes.map((dish) => {
             return (
                 <div key={dish._id} className="col-12 mt-5">
                     <RenderMenuItem dish={dish} deleteFavorite={props.deleteFavorite} />
                 </div>
             );
         });
+
 
         return(
             <div className="container">

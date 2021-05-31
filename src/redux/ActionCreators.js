@@ -370,6 +370,8 @@ export const fetchFavorites = () => (dispatch) => {
         },
     })
     .then(response => {
+        console.log("hello ji");
+        console.log(response);
         if (response.ok) {
             return response;
         }
