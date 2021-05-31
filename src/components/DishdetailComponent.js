@@ -5,6 +5,7 @@ import {Loading} from './LoadingComponent';
 import { Link } from "react-router-dom";
 import {baseUrl} from '../shared/baseUrl';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
+import ReactStars from "react-rating-stars-component";
 
 
 class CommentForm extends Component {
@@ -126,19 +127,29 @@ function RenderComments({ comments, dishId , postComment}) {
         <ul className="list-unstyled">
         <Stagger in>
           {comments.map(comment => {
+            console.log(comment);
             return (
               <Fade in>
+                <div style={{margin:10, padding:15,borderStyle:"outset" ,borderRadius:15}}>
                 <li key={comment.id}>
-                  <p>{comment.comment}</p>
-                  <p>
-                    -- {comment.author.firstname},{" "}{comment.author.lastname} ,{" "}
+                  {comment.comment}
+                  <br></br>
+                  <ReactStars
+                      count={5}
+                      value={comment.rating}
+                      size={20}
+                      activeColor="#ffd700"
+                    />
+                  
+                    <div style={{textAlign:"right"}}>-- {comment.author.firstname} {" "}{comment.author.lastname} ,{" "}
                     {new Intl.DateTimeFormat("en-US", {
                       year: "numeric",
                       month: "short",
                       day: "2-digit"
-                    }).format(new Date(Date.parse(comment.updatedAt)))}
-                  </p>
+                    }).format(new Date(Date.parse(comment.updatedAt)))}</div>
+                  
                 </li>
+                </div>
                 </Fade>
             );
           })}
